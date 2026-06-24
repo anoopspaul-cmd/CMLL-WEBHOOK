@@ -15,7 +15,7 @@ PHONE_NUMBER_ID = os.environ.get("PHONE_NUMBER_ID", "1183608764834373")
 CLAUDE_API_KEY  = os.environ.get("CLAUDE_API_KEY", "")
 NOTIFY_API_KEY  = os.environ.get("NOTIFY_API_KEY", "cmll_notify_key")
 GOOGLE_SHEET_ID = os.environ.get("GOOGLE_SHEET_ID", "")
-GOOGLE_CREDS    = os.environ.get("GOOGLE_CREDENTIALS", "")
+GOOGLE_CREDS    = "/etc/secrets/google_credentials.json"
 
 conversation_history = {}
 
