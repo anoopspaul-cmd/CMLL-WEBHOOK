@@ -15,7 +15,7 @@ PHONE_NUMBER_ID = os.environ.get("PHONE_NUMBER_ID", "1183608764834373")
 CLAUDE_API_KEY  = os.environ.get("CLAUDE_API_KEY", "")
 NOTIFY_API_KEY  = os.environ.get("NOTIFY_API_KEY", "cmll_notify_key")
 GOOGLE_SHEET_ID = os.environ.get("GOOGLE_SHEET_ID", "")
-GOOGLE_CREDS    = "/etc/secrets/google_credentials.json"
+GOOGLE_CREDS_FILE = "/etc/secrets/google_credentials.json"
 
 conversation_history = {}
 
@@ -24,7 +24,8 @@ conversation_history = {}
 def get_recipients(group="directors"):
     """Fetch recipients from Google Sheet filtered by group and active=YES"""
     try:
-        creds_dict = json.loads(GOOGLE_CREDS)
+        with open(GOOGLE_CREDS_FILE) as f:
+        creds_dict = json.load(f)
         scopes     = ["https://www.googleapis.com/auth/spreadsheets.readonly"]
         creds      = Credentials.from_service_account_info(creds_dict, scopes=scopes)
         client     = gspread.authorize(creds)
